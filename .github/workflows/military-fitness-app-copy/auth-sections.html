@@ -1,0 +1,89 @@
+<!-- Authentication pages -->
+<section id="auth-login" class="auth-page active">
+  <div class="auth-container">
+    <div class="auth-card">
+      <h2>Military Fitness Hub</h2>
+      <p>Sign in to your account</p>
+      <form id="loginForm">
+        <label>
+          Email
+          <input id="loginEmail" type="email" placeholder="your@email.com" required />
+        </label>
+        <label>
+          Password
+          <input id="loginPassword" type="password" placeholder="Password" required />
+        </label>
+        <button type="submit">Sign In</button>
+        <p class="auth-link">Don't have an account? <button type="button" id="switchToSignup">Sign up</button></p>
+      </form>
+      <p id="loginError" class="error-message"></p>
+    </div>
+  </div>
+</section>
+
+<section id="auth-signup" class="auth-page">
+  <div class="auth-container">
+    <div class="auth-card">
+      <h2>Create Account</h2>
+      <p>Join Military Fitness Hub</p>
+      <form id="signupForm">
+        <label>
+          Name
+          <input id="signupName" type="text" placeholder="Your name" />
+        </label>
+        <label>
+          Email
+          <input id="signupEmail" type="email" placeholder="your@email.com" required />
+        </label>
+        <label>
+          Password
+          <input id="signupPassword" type="password" placeholder="Password" required />
+        </label>
+        <button type="submit">Create Account</button>
+        <p class="auth-link">Already have an account? <button type="button" id="switchToLogin">Sign in</button></p>
+      </form>
+      <p id="signupError" class="error-message"></p>
+    </div>
+  </div>
+</section>
+
+<!-- Profiles tab -->
+<section id="profiles" class="page">
+  <div class="page-header">
+    <div>
+      <h2>User Profiles</h2>
+      <p>Browse all user fitness profiles.</p>
+    </div>
+    <button type="button" class="page-back" data-target="dashboard">Back to dashboard</button>
+  </div>
+
+  <div class="profiles-grid" id="profilesList"></div>
+</section>
+
+<!-- Documents tab -->
+<section id="documents" class="page">
+  <div class="page-header">
+    <div>
+      <h2>Documents & Files</h2>
+      <p>Upload and manage your fitness documents.</p>
+    </div>
+    <button type="button" class="page-back" data-target="dashboard">Back to dashboard</button>
+  </div>
+
+  <div class="page-grid">
+    <div class="card form-card">
+      <form id="documentForm">
+        <label>
+          Select file
+          <input id="docFileInput" type="file" required />
+        </label>
+        <button type="submit">Upload Document</button>
+      </form>
+    </div>
+
+    <div class="card history-card">
+      <h3>Your files</h3>
+      <div class="document-list" id="documentList"></div>
+    </div>
+  </div>
+</section>

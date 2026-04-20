@@ -1,0 +1,160 @@
+/* Authentication styles */
+.auth-page {
+  display: none;
+}
+
+.auth-page.active {
+  display: flex;
+}
+
+.auth-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at top, rgba(79, 140, 255, 0.15), transparent 35%), #0d1222;
+  padding: 16px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+  background: #12172d;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 24px;
+  padding: 40px 32px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+}
+
+.auth-card h2 {
+  margin: 0 0 8px;
+  font-size: 1.8rem;
+}
+
+.auth-card p {
+  margin: 0 0 28px;
+  color: #abb1c5;
+}
+
+.auth-card form label {
+  margin-bottom: 20px;
+}
+
+.auth-card input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
+  color: #eef2ff;
+  font-size: 1rem;
+}
+
+.auth-card button[type="submit"] {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #4f8cff, #7ad0ff);
+  border: none;
+  color: #0c1223;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.auth-link {
+  text-align: center;
+  color: #abb1c5;
+  margin-top: 16px;
+}
+
+.auth-link button {
+  background: none;
+  border: none;
+  color: #4f8cff;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.error-message {
+  color: #ff6b6b;
+  font-size: 0.9rem;
+  margin-top: 8px;
+}
+
+/* Profiles grid */
+.profiles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.profile-card-grid .card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 24px;
+}
+
+.profile-card-grid h3 {
+  margin-top: 0;
+}
+
+.profile-card-grid p {
+  margin: 12px 0;
+  color: #b5becf;
+}
+
+/* Document styles */
+.document-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  margin-bottom: 12px;
+}
+
+.document-item strong {
+  color: #eef2ff;
+}
+
+.document-item p {
+  margin: 6px 0 0;
+  color: #cbd2e4;
+  font-size: 0.9rem;
+}
+
+.doc-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-download,
+.btn-delete {
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.btn-download {
+  background: rgba(129, 199, 132, 0.2);
+  color: #81c784;
+}
+
+.btn-delete {
+  background: rgba(255, 107, 107, 0.2);
+  color: #ff6b6b;
+}
+
+.empty-state,
+.error-state {
+  color: #8f97b5;
+  padding: 16px;
+  text-align: center;
+}

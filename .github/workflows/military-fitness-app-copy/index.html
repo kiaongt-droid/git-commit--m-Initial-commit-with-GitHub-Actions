@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#121212" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icons/icon.svg" />
+  <title>Military Fitness Hub</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">MF</div>
+        <div>
+          <h1>Military Fitness Hub</h1>
+          <p>Track your profile, log physical & combat tests, and generate AI training and meal plans.</p>
+        </div>
+      </div>
+
+      <div class="profile-summary">
+        <div class="avatar" id="profileAvatar" aria-hidden="true">?</div>
+        <div>
+          <p class="profile-name" id="profileName">Name: —</p>
+          <p class="profile-details" id="profileDetails">Age: — | Height: — | Weight: — | Waist: —</p>
+        </div>
+      </div>
+    </header>
+
+    <nav class="main-nav" aria-label="Primary navigation">
+      <button type="button" class="nav-button active" data-target="dashboard">Dashboard</button>
+      <button type="button" class="nav-button" data-target="physical-test">Physical Fitness Test</button>
+      <button type="button" class="nav-button" data-target="combat-test">Combat Fitness Test</button>
+      <button type="button" class="nav-button" data-target="training-ai">Physical Training (AI)</button>
+      <button type="button" class="nav-button" data-target="meal-plan">Meal Plan</button>
+      <button type="button" class="nav-button" data-target="performance-graphs">Performance Graphs</button>
+      <button type="button" class="nav-button" data-target="documents">Documents</button>
+      <button type="button" class="nav-button" data-target="health-tracker">Health Tracker</button>
+    </nav>
+
+    <main>
+      <section id="dashboard" class="page active">
+        <div class="dashboard-grid">
+          <div class="card profile-card">
+            <h2>Profile</h2>
+            <form id="profileForm">
+              <label>
+                Name
+                <input id="profileNameInput" type="text" placeholder="Enter name" />
+              </label>
+              <label>
+                Age
+                <input id="profileAgeInput" type="number" min="10" placeholder="Years" />
+              </label>
+              <label class="split-row">
+                <span>
+                  Height
+                  <input id="profileHeightInput" type="text" placeholder="e.g. 180 cm" />
+                </span>
+                <span>
+                  Weight
+                  <input id="profileWeightInput" type="text" placeholder="e.g. 78 kg" />
+                </span>
+              </label>
+              <label>
+                Waist size
+                <input id="profileWaistInput" type="text" placeholder="e.g. 32 in" />
+              </label>
+              <button type="submit">Save Profile</button>
+            </form>
+          </div>
+
+          <div class="card quick-actions-card">
+            <h2>Quick actions</h2>
+            <div class="action-grid">
+              <button type="button" data-target="physical-test">Physical Fitness Test</button>
+              <button type="button" data-target="combat-test">Combat Fitness Test</button>
+              <button type="button" data-target="performance-graphs">Performance Graphs</button>
+              <button type="button" data-target="training-ai">AI Training</button>
+              <button type="button" data-target="meal-plan">Meal Plan</button>
+              <button type="button" data-target="documents">Documents</button>
+              <button type="button" data-target="health-tracker">Health Tracker</button>
+            </div>
+          </div>
+
+          <div class="card summary-card">
+            <h2>Latest entries</h2>
+            <div class="summary-list">
+              <div>
+                <h3>Physical test</h3>
+                <p id="latestPhysicalSummary">No entries yet.</p>
+              </div>
+              <div>
+                <h3>Combat test</h3>
+                <p id="latestCombatSummary">No entries yet.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="physical-test" class="page">
+        <div class="page-header">
+          <div>
+            <h2>Physical Fitness Test</h2>
+            <p>Log your 3-mile run, plank time, and pull-up count with a timestamped history.</p>
+          </div>
+          <button type="button" class="page-back" data-target="dashboard">Back to dashboard</button>
+        </div>
+
+        <div class="page-grid">
+          <div class="card form-card">
+            <form id="physicalForm">
+              <label>
+                3-mile run time
+                <div class="run-inputs">
+                  <input id="run3Minutes" type="number" min="0" placeholder="MM" />
+                  <span>:</span>
+                  <input id="run3Seconds" type="number" min="0" max="59" placeholder="SS" />
+                </div>
+              </label>
+              <label>
+                Plank time
+                <div class="run-inputs">
+                  <input id="plankMinutes" type="number" min="0" placeholder="MM" />
+                  <span>:</span>
+                  <input id="plankSeconds" type="number" min="0" max="59" placeholder="SS" />
+                </div>
+              </label>
+              <label>
+                Pull-up count
+                <input id="pullupCount" type="number" min="0" placeholder="Reps" />
+              </label>
+              <button type="submit">Save Physical Entry</button>
+            </form>
+          </div>
+
+          <div class="card history-card">
+            <div class="card-header">
+              <h3>History</h3>
+              <button type="button" id="physicalHistoryRefresh">Refresh</button>
+            </div>
+            <div class="history-list" id="physicalHistory"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="combat-test" class="page">
+        <div class="page-header">
+          <div>
+            <h2>Combat Fitness Test</h2>
+            <p>Log Maneuver Under Fire, 880m run, and ammo can lift counts.</p>
+          </div>
+          <button type="button" class="page-back" data-target="dashboard">Back to dashboard</button>
+        </div>
+
+        <div class="page-grid">
+          <div class="card form-card">
+            <form id="combatForm">
+              <label>
+                Maneuver Under Fire time
+                <div class="run-inputs">
+                  <input id="mufMinutes" type="number" min="0" placeholder="MM" />
+                  <span>:</span>
+                  <input id="mufSeconds" type="number" min="0" max="59" placeholder="SS" />
+                </div>
+              </label>
+              <label>
+                880m run time
+                <div class="run-inputs">
+                  <input id="run880Minutes" type="number" min="0" placeholder="MM" />
+                  <span>:</span>
+                  <input id="run880Seconds" type="number" min="0" max="59" placeholder="SS" />
+                </div>
+              </label>
+              <label>
+                Ammo can lifts
+                <input id="ammoLiftCount" type="number" min="0" placeholder="Reps" />
+              </label>
+              <button type="submit">Save Combat Entry</button>
+            </form>
+          </div>
+
+          <div class="card history-card">
+            <div class="card-header">
+              <h3>History</h3>
+              <button type="button" id="combatHistoryRefresh">Refresh</button>
+            </div>
+            <div class="history-list" id="combatHistory"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="performance-graphs" class="page">
+        <div class="page-header">
+          <div>
+            <h2>Performance Graphs</h2>
+            <p>Visualize trends for physical and combat fitness metrics over time.</p>
+          </div>
+          <button type="button" class="page-back" data-target="dashboard">Back to dashboard</button>
+        </div>
+
+        <div class="graphs-grid">
+          <div class="card chart-card">
+            <h3>3-mile run (seconds)</h3>
+            <canvas id="run3Chart" width="720" height="280"></canvas>
+          </div>
+          <div class="card chart-card">
+            <h3>Plank time (seconds)</h3>
+            <canvas id="plankChart" width="720" height="280"></canvas>
+          </div>
+          <div class="card chart-card">
+            <h3>Pull-ups</h3>
+            <canvas id="pullupChart" width="720" height="280"></canvas>
+          </div>
+          <div class="card chart-card">
+            <h3>MUF time (seconds)</h3>
+            <canvas id="mufChart" width="720" height="280"></canvas>
+          </div>
+          <div class="card chart-card">
+            <h3>880m run (seconds)</h3>
+            <canvas id="run880Chart" width="720" height="280"></canvas>
+          </div>
+          <div class="card chart-card">
+            <h3>Ammo can lifts</h3>
+            <canvas id="ammoChart" width="720" height="280"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <section id="training-ai" class="page">
+        <div class="page-header">
+          <div>
+            <h2>Physical Training (AI)</h2>
+            <p>Generate a weekly training plan based on your weakest event trends.</p>
+          </div>
+          <button type="button" class="page-back" data-target="dashboard">Back to dashboard</button>
+        </div>
+
+        <div class="page-grid">
+          <div class="card ai-card">
+            <h3>Weak exercises</h3>
+            <div id="weakExercises" class="weakness-list">Loading performance summary…</div>
+            <label>
+              Equipment Available
+              <select id="trainingEquipment">
+                <option value="full gym">Full Gym</option>
+                <option value="minimal">Minimal (Dumbbells/Kettlebells)</option>
+                <option value="bodyweight">Bodyweight Only</option>
+              </select>
+            </label>
+            <label>
+              Training Frequency
+              <select id="trainingFrequency">
+                <option value="3">3 Days/Week</option>
+                <option value="4">4 Days/Week</option>
+                <option value="5">5 Days/Week</option>
+                <option value="6">6 Days/Week</option>
+              </select>
+            </label>
+            <label>
+              Notes for the plan
+              <textarea id="trainingNotes" rows="5" placeholder="Add any goals or focus areas..."></textarea>
+            </label>
+            <button type="button" id="generateTrainingPlan">Generate Plan</button>
+          </div>
+
+          <div class="card output-card">
+            <h3>Weekly training plan</h3>
+            <div id="trainingPlanOutput" class="ai-output">No plan generated yet.</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="meal-plan" class="page">
+        <div class="page-header">
+          <div>
+            <h2>Meal Plan</h2>
+            <p>Set a goal, add restrictions, and generate a structured meal suggestion plan.</p>
+          </div>
+          <button type="button" class="page-back" data-target="dashboard">Back to dashboard</button>
+        </div>
+
+        <div class="page-grid">
+          <div class="card form-card">
+            <form id="mealForm">
+              <label>
+                Goal
+                <select id="mealGoal">
+                  <option value="fat loss">Fat loss</option>
+                  <option value="performance">Performance</option>
+                  <option value="maintenance">Maintenance</option>
+                  <option value="muscle gain">Muscle Gain</option>
+                </select>
+              </label>
+              <label>
+                Activity Level
+                <select id="activityLevel">
+                  <option value="sedentary">Sedentary</option>
+                  <option value="moderate">Moderately Active</option>
+                  <option value="very">Very Active</option>
+                  <option value="extra">Extra Active (Military Training)</option>
+                </select>
+              </label>
+              <label>
+                Dietary restrictions
+                <input id="dietRestrictions" type="text" placeholder="Gluten-free, vegetarian, dairy-free" />
+              </label>
+              <label>
+                Foods to exclude (dislikes)
+                <input id="excludeFoods" type="text" placeholder="e.g., Mushrooms, Liver" />
+              </label>
+              <button type="submit">Generate Meal Plan</button>
+            </form>
+          </div>
+
+          <div class="card output-card">
+            <h3>Meal suggestions</h3>
+            <div id="mealPlanOutput" class="ai-output">No meal plan generated yet.</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="documents" class="page">
+        <div class="page-header">
+          <div>
+            <h2>Documents</h2>
+            <p>Upload and manage important documents like medical records or certifications.</p>
+          </div>
+          <button type="button" class="page-back" data-target="dashboard">Back to dashboard</button>
+        </div>
+
+        <div class="page-grid">
+          <div class="card form-card">
+            <h3>Add Document</h3>
+            <form id="documentForm">
+              <label>
+                Document Name
+                <input id="docNameInput" type="text" placeholder="e.g. Annual Medical" required />
+              </label>
+              <label>
+                Select File
+                <input id="docFileInput" type="file" required />
+              </label>
+              <button type="submit">Upload Document</button>
+            </form>
+            <p class="form-hint" style="margin-top: 1rem; font-size: 0.8rem; color: #7d83a5;">Note: Files are stored locally on your device.</p>
+          </div>
+
+          <div class="card history-card">
+            <div class="card-header">
+              <h3>Stored Documents</h3>
+            </div>
+            <div class="history-list" id="documentList">
+              <p class="empty-state">No documents uploaded yet.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="health-tracker" class="page">
+        <div class="page-header">
+          <div>
+            <h2>Health Tracker</h2>
+            <p>Track your daily water intake and sleep duration for optimal recovery.</p>
+          </div>
+          <button type="button" class="page-back" data-target="dashboard">Back to dashboard</button>
+        </div>
+
+        <div class="page-grid">
+          <div class="card form-card">
+            <h3>Daily Metrics</h3>
+            <form id="healthForm">
+              <label>
+                Water Intake (Liters)
+                <input id="waterInput" type="number" step="0.1" min="0" placeholder="e.g. 3.5" required />
+              </label>
+              <label>
+                Sleep Duration (Hours)
+                <input id="sleepInput" type="number" step="0.5" min="0" placeholder="e.g. 7.5" required />
+              </label>
+              <button type="submit">Log Health Data</button>
+            </form>
+          </div>
+
+          <div class="card history-card">
+            <div class="card-header">
+              <h3>Health Trends (Last 7 Days)</h3>
+            </div>
+            <div class="chart-card">
+              <canvas id="healthChart" width="720" height="280"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

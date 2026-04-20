@@ -1,0 +1,6 @@
+{
+  "appId": "com.example.militaryfitness",
+  "appName": "Military Fitness Hub",
+  "webDir": ".",
+  "bundledWebRuntime": false
+}
